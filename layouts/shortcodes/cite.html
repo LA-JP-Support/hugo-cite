@@ -136,7 +136,8 @@
                     {{- with $author.given -}}
                       <meta itemprop="givenName" content="{{ . }}">
                     {{- end -}}
-                    {{- with $author.family -}}
+                    {{- $familyOrLiteral := or $author.family $author.literal -}}
+                    {{- with $familyOrLiteral -}}
                       <span itemprop="familyName">{{ . | markdownify }}</span>
                     {{- end -}}
                   </span>

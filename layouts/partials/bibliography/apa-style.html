@@ -21,7 +21,8 @@
   {{- $totalAuthors := len $authors -}}
   {{- range $authorIndex, $author := $authors -}}
   <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-    {{- with $author.family -}}
+    {{- $familyOrLiteral := or $author.family $author.literal -}}
+    {{- with $familyOrLiteral -}}
     <span itemprop="familyName">{{ . }}</span>
     {{- end -}} 
     {{- with $author.given -}},&#32;

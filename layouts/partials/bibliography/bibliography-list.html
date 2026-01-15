@@ -59,7 +59,8 @@
           {{- $totalAuthors := len $displayAuthors -}}
           {{- range $authorIndex, $author := $displayAuthors -}}{{/* BEGIN authors loop */}}
 
-          {{- with $author.family -}}
+          {{- $familyOrLiteral := or $author.family $author.literal -}}
+          {{- with $familyOrLiteral -}}
           {{ . }}
           {{- end }}
           {{- if and (gt $totalAuthors 1) (lt (add $authorIndex 2) $totalAuthors) -}},&#32;
